@@ -1,0 +1,9 @@
+
+{
+  "name": "Swapnil Yelkar - UI Architect Portfolio",
+  "description": "A futuristic, AI-powered portfolio and career agent for Swapnil Yelkar, featuring micro-frontend expertise and high-performance UI architecture.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
