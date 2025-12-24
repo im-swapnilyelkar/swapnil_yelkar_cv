@@ -5,6 +5,7 @@ import ChatBot from './components/ChatBot';
 import { resumeData } from './data/resumeData';
 import { GoogleGenAI } from "@google/genai";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const MatrixBackground = () => {
   useEffect(() => {
@@ -681,6 +682,7 @@ const App: React.FC = () => {
 
       <ChatBot />
       <Analytics />
+      <SpeedInsights />
     </Layout>
   );
 };
