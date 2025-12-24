@@ -104,6 +104,105 @@ const ProjectSketch = ({ type }: { type: string }) => {
   );
 };
 
+const getSkillIcon = (name: string) => {
+  const normalized = name.toLowerCase();
+  const className = "w-10 h-10 mb-6 text-cyan-400 group-hover:text-emerald-400 transition-colors duration-300 stroke-[1.5]";
+
+  if (normalized.includes("react") || normalized.includes("native")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+         <circle cx="12" cy="12" r="3" />
+         <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)" />
+         <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
+         <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
+      </svg>
+    );
+  }
+  if (normalized.includes("angular")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M12 2L2 22h20L12 2zm0 4l6.5 13h-13L12 6z" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("typescript")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M4 7h16" strokeLinecap="round"/>
+        <path d="M12 7v13" strokeLinecap="round"/>
+        <path d="M8 20h8" strokeLinecap="round"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("next")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+        <path d="M13 2v7h7"></path>
+        <path d="M9 16l6-6"></path>
+      </svg>
+    );
+  }
+  if (normalized.includes("node")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M12 2l-9 5v10l9 5 9-5V7l-9-5z" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M12 12v10" strokeLinecap="round"/>
+        <path d="M12 12L3 7" strokeLinecap="round"/>
+        <path d="M12 12l9-5" strokeLinecap="round"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("java") && !normalized.includes("script")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M17 11c0 2.5-4 4-5 6-1-2-5-3.5-5-6" strokeLinecap="round" />
+        <path d="M12 3v2" strokeLinecap="round" />
+        <path d="M15 4v2" strokeLinecap="round" />
+        <path d="M9 4v2" strokeLinecap="round" />
+        <path d="M6 19c0 1.1 2.2 2 6 2s6-.9 6-2" />
+        <path d="M19 14h1c1.1 0 2 .9 2 2s-.9 2-2 2h-1" />
+      </svg>
+    );
+  }
+  if (normalized.includes("spring")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+         <path d="M12 3L4 9v12h16V9l-8-6z" strokeLinecap="round" strokeLinejoin="round"/>
+         <path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+         <path d="M12 14v4" strokeLinecap="round"/>
+         <path d="M8.5 17.5L12 14l3.5 3.5" strokeLinecap="round"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("python")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+        <path d="M10 8h4v4h-4z" />
+        <path d="M10 12h4v4h-4z" />
+      </svg>
+    );
+  }
+  if (normalized.includes("aws")) {
+     return (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M17 16l-5-5-5 5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M12 4v12" strokeLinecap="round"/>
+        <path d="M4 20h16" strokeLinecap="round"/>
+      </svg>
+     );
+  }
+  
+  // Default Generic Code Icon
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path d="M16 18l6-6-6-6" strokeLinecap="round" strokeWidth="2"/>
+      <path d="M8 6l-6 6 6 6" strokeLinecap="round" strokeWidth="2"/>
+    </svg>
+  );
+};
+
 const App: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [generatedImageUrl, setGeneratedImageUrl] = useState<string | null>(null);
@@ -162,61 +261,74 @@ const App: React.FC = () => {
       <MatrixBackground />
       
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden border-b border-white/5">
+      {/* Hero Section */}
+      <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 pb-12 overflow-hidden border-b border-white/5">
         <HeroWaves />
         <div className="container mx-auto px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-16 max-w-7xl mx-auto">
-            <div className="flex-1 space-y-10 text-center lg:text-left">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 max-w-7xl mx-auto">
+            <div className="flex-1 space-y-8 text-center lg:text-left">
               <div className="space-y-4">
-                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 text-cyan-400 text-[10px] font-bold uppercase tracking-[0.3em] animate-in fade-in slide-in-from-left-4 duration-700">
-                  <span className="relative flex h-2 w-2">
+                <div className="inline-flex items-center gap-3 px-3 py-1.5 rounded-full border border-cyan-500/20 bg-cyan-500/5 text-cyan-400 text-[9px] font-bold uppercase tracking-[0.3em] animate-in fade-in slide-in-from-left-4 duration-700">
+                  <span className="relative flex h-1.5 w-1.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
                   </span>
                   Open to work | Ontario Canada
                 </div>
-                <h1 className="text-7xl md:text-9xl font-display font-bold tracking-tighter leading-none animate-in fade-in slide-in-from-bottom-8 duration-1000">
-                  <span className="block text-slate-400 opacity-50 uppercase">SWAPNIL</span>
-                  <span className="block bg-gradient-to-r from-cyan-400 via-emerald-400 to-purple-500 bg-clip-text text-transparent uppercase">YELKAR</span>
+                <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-display font-bold tracking-tighter leading-none animate-in fade-in slide-in-from-bottom-8 duration-1000 relative group">
+                  <span className="block text-slate-400 opacity-50 uppercase tracking-tight group-hover:opacity-100 transition-opacity duration-1000">SWAPNIL</span>
+                  <span className="block bg-gradient-to-r from-cyan-400 via-emerald-400 to-purple-500 bg-clip-text text-transparent uppercase tracking-tight drop-shadow-[0_0_15px_rgba(6,182,212,0.2)] group-hover:drop-shadow-[0_0_30px_rgba(6,182,212,0.6)] transition-all duration-500">YELKAR</span>
                 </h1>
-                <p className="text-2xl md:text-3xl text-slate-200 font-bold font-display animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-200 uppercase tracking-tighter">
-                  Technical Lead <span className="text-cyan-500">|</span> AI Engineer <span className="text-cyan-500">|</span> UI Architect
-                </p>
+                <div className="relative overflow-hidden w-full max-w-full group">
+                  <div className="text-base md:text-xl lg:text-2xl font-bold font-display animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-200 uppercase tracking-widest text-slate-200 flex flex-wrap md:flex-nowrap items-center justify-center lg:justify-start gap-3 md:gap-4 whitespace-nowrap">
+                    <span className="hover:text-cyan-400 transition-colors duration-300">Technical Lead</span>
+                    <span className="text-cyan-500/50">|</span>
+                    <span className="hover:text-emerald-400 transition-colors duration-300">AI Engineer</span>
+                    <span className="text-cyan-500/50">|</span>
+                    <span className="hover:text-purple-400 transition-colors duration-300">UI Architect</span>
+                  </div>
+                  <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                </div>
               </div>
               
-              <div className="max-w-xl text-slate-400 text-lg leading-relaxed animate-in fade-in slide-in-from-bottom-16 duration-1000 delay-300 glass p-8 rounded-[2rem] border-white/5 mx-auto lg:mx-0">
-                Transforming complex enterprise requirements into <span className="text-cyan-400 font-bold underline decoration-cyan-500/20 underline-offset-8">distributed high-performance ecosystems</span>. 
+              <div className="max-w-lg text-slate-400 text-base leading-relaxed animate-in fade-in slide-in-from-bottom-16 duration-1000 delay-300 glass p-6 rounded-[1.5rem] border-white/5 mx-auto lg:mx-0">
+                Transforming complex enterprise requirements into <span className="text-cyan-400 font-bold underline decoration-cyan-500/20 underline-offset-4">distributed high-performance ecosystems</span>. 
                 Expert in Micro-frontends, Modular Federation, and AI-driven UI scalability.
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 pt-6 animate-in fade-in slide-in-from-bottom-20 duration-1000 delay-400 w-full lg:w-auto">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-5 pt-4 animate-in fade-in slide-in-from-bottom-20 duration-1000 delay-400 w-full lg:w-auto">
                 <button 
                   onClick={openAgent}
-                  className="w-full sm:w-auto px-10 py-6 bg-gradient-to-r from-cyan-600 to-emerald-600 text-slate-950 font-bold rounded-2xl shadow-[0_0_40px_rgba(6,182,212,0.3)] hover:shadow-[0_0_60px_rgba(6,182,212,0.5)] hover:-translate-y-1 transition-all uppercase tracking-[0.2em] text-[11px]"
+                  className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-600 to-emerald-600 text-slate-950 font-bold rounded-xl shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:shadow-[0_0_50px_rgba(6,182,212,0.5)] hover:-translate-y-1 transition-all uppercase tracking-[0.15em] text-[10px] flex items-center justify-center gap-3"
                 >
+                  <svg className="w-5 h-5 text-slate-950" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                  </svg>
                   Launch Career Proxy
                 </button>
                 <a 
                   href="/Swapnil_Yelkar_Resume.pdf" 
-                  download="Swapnil_Yelkar_Resume.pdf"
-                  className="w-full sm:w-auto px-10 py-6 glass border-white/10 hover:border-cyan-500/30 transition-all rounded-2xl font-bold flex items-center justify-center gap-4 text-[11px] uppercase tracking-[0.2em] text-slate-200 hover:-translate-y-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-8 py-4 glass border-white/10 hover:border-cyan-500/30 transition-all rounded-xl font-bold flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.15em] text-slate-200 hover:-translate-y-1"
                 >
-                  <svg className="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  <svg className="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                   Sync Resume
                 </a>
               </div>
             </div>
 
-            <div className="flex-1 relative animate-in fade-in slide-in-from-right-8 duration-1000 delay-500">
-               <div className="relative w-72 h-72 md:w-96 md:h-96 mx-auto">
+            <div className="flex-1 relative animate-in fade-in slide-in-from-right-8 duration-1000 delay-500 flex justify-center py-10 lg:py-0">
+               {/* Reduced container size to prevent cropping */}
+               <div className="relative w-64 h-64 md:w-80 md:h-80">
                   {/* Futuristic Frame */}
-                  <div className="absolute inset-0 border-[0.5px] border-cyan-500/30 rounded-[3rem] animate-[spin_30s_linear_infinite]"></div>
-                  <div className="absolute inset-4 border-[0.5px] border-emerald-500/20 rounded-[2.5rem] animate-[spin_20s_linear_infinite_reverse]"></div>
+                  <div className="absolute inset-[-20px] border-[0.5px] border-cyan-500/30 rounded-[3rem] animate-[spin_30s_linear_infinite]"></div>
+                  <div className="absolute inset-[-10px] border-[0.5px] border-emerald-500/20 rounded-[2.5rem] animate-[spin_20s_linear_infinite_reverse]"></div>
                   
                   {/* Profile Image with Dynamic Technical Background */}
-                  <div className="absolute inset-8 rounded-[2rem] overflow-hidden glass border border-white/10 group">
+                  <div className="absolute inset-0 rounded-[2rem] overflow-hidden glass border border-white/10 group">
                     <div 
                       className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
                       style={{ 
@@ -237,73 +349,29 @@ const App: React.FC = () => {
                   </div>
 
                   {/* UI Elements */}
-                  <div className="absolute -top-6 -right-6 glass p-4 rounded-2xl border-cyan-500/20 animate-float z-30">
-                     <div className="text-[10px] text-cyan-400 font-bold tracking-widest uppercase">Location</div>
-                     <div className="text-sm font-bold text-white uppercase tracking-tighter">Canada // OAKV</div>
+                  <div className="absolute -top-4 -right-8 glass p-3 rounded-xl border-cyan-500/20 animate-float z-30 shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-md">
+                     <div className="text-[9px] text-cyan-400 font-bold tracking-widest uppercase mb-0.5">Location</div>
+                     <div className="text-xs font-bold text-white uppercase tracking-tighter">Canada // ON</div>
                   </div>
-                  <div className="absolute -bottom-6 -left-6 glass p-4 rounded-2xl border-emerald-500/20 animate-float z-30" style={{ animationDelay: '-2s' }}>
-                     <div className="text-[10px] text-emerald-400 font-bold tracking-widest uppercase">Exp_Status</div>
-                     <div className="text-sm font-bold text-white uppercase tracking-tighter">14+ Cycles</div>
+                  <div className="absolute -bottom-4 -left-8 glass p-3 rounded-xl border-emerald-500/20 animate-float z-30 shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-md" style={{ animationDelay: '-2s' }}>
+                     <div className="text-[9px] text-emerald-400 font-bold tracking-widest uppercase mb-0.5">Exp_Status</div>
+                     <div className="text-xs font-bold text-white uppercase tracking-tighter">14+ Cycles</div>
                   </div>
                </div>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Skills Matrix */}
-      <section id="skills" className="py-40 border-b border-white/5 relative">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-20 max-w-7xl mx-auto">
-            <div className="lg:w-1/3 space-y-8">
-              <div className="space-y-4">
-                <h2 className="text-cyan-400 text-xs font-bold uppercase tracking-[0.4em]">Capabilities_Matrix</h2>
-                <h3 className="text-5xl font-display font-bold">Technical Genome.</h3>
-              </div>
-              <p className="text-slate-500 leading-relaxed text-lg">
-                High-fidelity proficiency across the modern UI stack, specialized in architectural scaling.
-              </p>
-              <div className="flex flex-wrap gap-3 pt-6">
-                {categories.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setSelectedCategory(cat)}
-                    className={`px-5 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all ${
-                      selectedCategory === cat 
-                        ? 'bg-cyan-500 text-slate-950 shadow-[0_0_20px_rgba(6,182,212,0.4)]' 
-                        : 'bg-slate-900/50 text-slate-500 border border-white/5 hover:text-white hover:border-cyan-500/30'
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
-            </div>
-            
-            <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {filteredSkills.map((skill) => (
-                <div key={skill.name} className="glass p-8 rounded-[2rem] border-white/5 group relative overflow-hidden transition-all hover:border-cyan-500/20">
-                  <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                     <span className="text-4xl font-display font-bold text-cyan-500">01</span>
-                  </div>
-                  <div className="relative z-10 space-y-6">
-                    <div className="flex justify-between items-end">
-                      <div>
-                        <span className="text-slate-500 text-[9px] font-bold uppercase tracking-[0.2em] mb-1 block">{skill.category}</span>
-                        <h4 className="text-xl font-bold text-slate-200 uppercase tracking-tighter">{skill.name}</h4>
-                      </div>
-                      <span className="text-cyan-400 font-display text-lg font-bold">{skill.level}%</span>
-                    </div>
-                    <div className="h-1 w-full bg-slate-900 rounded-full overflow-hidden">
-                      <div className="h-full bg-gradient-to-r from-cyan-500 to-emerald-500 transition-all duration-1500 ease-out" style={{ width: `${skill.level}%` }}></div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce cursor-pointer z-20 hover:text-cyan-400 transition-colors" onClick={() => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })}>
+          <span className="text-[10px] text-cyan-500/50 uppercase tracking-[0.3em]">Explore System</span>
+          <svg className="w-4 h-4 text-cyan-500/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
         </div>
       </section>
+
+
 
       {/* Professional Experience */}
       <section id="experience" className="py-40 relative">
@@ -413,6 +481,151 @@ const App: React.FC = () => {
         </div>
       </section>
 
+      {/* Certifications Section */}
+      <section id="certifications" className="py-40 relative border-t border-white/5 overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 pointer-events-none">
+           <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2"></div>
+           <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3"></div>
+        </div>
+
+        <div className="container mx-auto px-6 max-w-7xl relative z-10">
+          <div className="mb-24 space-y-4 text-center">
+            <h2 className="text-cyan-400 text-xs font-bold uppercase tracking-[0.4em] animate-pulse">Credentials_Verified</h2>
+            <h3 className="text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">Certifications.</h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {resumeData.certifications.map((cert, idx) => (
+              <div key={idx} className="group relative">
+                {/* Popover Preview */}
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-6 w-72 glass p-4 rounded-xl border border-cyan-500/30 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 pointer-events-none z-20 shadow-[0_0_30px_rgba(6,182,212,0.2)]">
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-slate-900 border-b border-r border-cyan-500/30 rotate-45"></div>
+                    <div className="relative z-10 space-y-3">
+                      <div className="flex items-center justify-between border-b border-white/10 pb-2">
+                          <span className="text-[10px] text-cyan-400 font-bold uppercase tracking-widest">Source_Link</span>
+                          <div className="flex gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-500/50"></span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-yellow-500/50"></span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-green-500/50"></span>
+                          </div>
+                      </div>
+                      <div className="flex items-center gap-2 text-[9px] text-emerald-400 font-bold uppercase tracking-widest bg-emerald-500/10 p-2 rounded-lg justify-center">
+                          <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                          </span>
+                          Click to View Credential
+                      </div>
+                    </div>
+                </div>
+
+                {/* Main Card */}
+                <a 
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`block h-full glass p-8 rounded-[2rem] border border-white/5 relative overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:border-cyan-500/30 hover:shadow-[0_0_40px_rgba(6,182,212,0.15)] group ${!cert.link ? 'pointer-events-none' : ''}`}
+                >
+                  {/* Futuristic Corner Accents */}
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500/0 via-cyan-500/50 to-cyan-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500/0 via-purple-500/50 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                  
+                  {/* Background Glow */}
+                  <div className="absolute -top-20 -right-20 w-48 h-48 bg-cyan-500/5 blur-[60px] rounded-full group-hover:bg-cyan-500/10 transition-colors duration-700"></div>
+
+                  {/* Top Right Status Icon */}
+                  <div className="absolute top-6 right-6">
+                    <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 shadow-[0_0_10px_rgba(16,185,129,0.1)] group-hover:bg-emerald-500/20 transition-all">
+                      <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  <div className="relative z-10 flex flex-col h-full">
+                    {/* Main Icon */}
+                    <div className="mb-6">
+                       <div className="w-14 h-14 bg-slate-900/50 rounded-2xl border border-white/10 flex items-center justify-center group-hover:border-cyan-500/50 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.2)] transition-all duration-500">
+                          <svg className="w-7 h-7 text-slate-400 group-hover:text-cyan-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                          </svg>
+                       </div>
+                    </div>
+
+                    <div className="flex-1 flex flex-col">
+                      <h4 className="text-xl font-display font-medium text-slate-100 leading-snug mb-2 group-hover:text-cyan-400 transition-colors min-h-[3.5rem]">{cert.title}</h4>
+                      
+                      <div className="mt-auto pt-6 border-t border-white/5 group-hover:border-cyan-500/20 transition-colors">
+                         <div className="flex flex-col gap-1">
+                            <span className="text-[10px] text-cyan-500 font-mono tracking-wider mb-1">{cert.date}</span>
+                            <span className="text-xs text-slate-400 font-bold uppercase tracking-widest">{cert.issuer}</span>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Matrix */}
+      <section id="skills" className="py-40 border-b border-white/5 relative">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col lg:flex-row gap-20 max-w-7xl mx-auto">
+            <div className="lg:w-1/3 space-y-8">
+              <div className="space-y-4">
+                <h2 className="text-cyan-400 text-xs font-bold uppercase tracking-[0.4em]">Capabilities_Matrix</h2>
+                <h3 className="text-5xl font-display font-bold">Technical Genome.</h3>
+              </div>
+              <p className="text-slate-500 leading-relaxed text-lg">
+                High-fidelity proficiency across the modern UI stack, specialized in architectural scaling.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-6">
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`px-5 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all ${
+                      selectedCategory === cat 
+                        ? 'bg-cyan-500 text-slate-950 shadow-[0_0_20px_rgba(6,182,212,0.4)]' 
+                        : 'bg-slate-900/50 text-slate-500 border border-white/5 hover:text-white hover:border-cyan-500/30'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+            
+            <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {filteredSkills.map((skill, index) => (
+                <div key={skill.name} className="glass p-8 rounded-[2rem] border-white/5 group relative overflow-hidden transition-all hover:border-cyan-500/20">
+                  <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                     <span className="text-4xl font-display font-bold text-cyan-500">{(index + 1).toString().padStart(2, '0')}</span>
+                  </div>
+                  <div className="relative z-10 space-y-6">
+                    {getSkillIcon(skill.name)}
+                    <div className="flex justify-between items-end">
+                      <div>
+                        <span className="text-slate-500 text-[9px] font-bold uppercase tracking-[0.2em] mb-1 block">{skill.category}</span>
+                        <h4 className="text-xl font-bold text-slate-200 uppercase tracking-tighter">{skill.name}</h4>
+                      </div>
+                      <span className="text-cyan-400 font-display text-lg font-bold">{skill.level}%</span>
+                    </div>
+                    <div className="h-1 w-full bg-slate-900 rounded-full overflow-hidden">
+                      <div className="h-full bg-gradient-to-r from-cyan-500 to-emerald-500 transition-all duration-1500 ease-out" style={{ width: `${skill.level}%` }}></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="py-48 relative">
         <div className="container mx-auto px-6">
@@ -457,8 +670,9 @@ const App: React.FC = () => {
 
             <div className="pt-32 flex flex-wrap justify-center gap-16 opacity-10">
               <span className="font-display font-bold text-2xl tracking-[0.5em]">ROCHE</span>
-              <span className="font-display font-bold text-2xl tracking-[0.5em]">BMC_SYSTEMS</span>
-              <span className="font-display font-bold text-2xl tracking-[0.5em]">COGNIZANT_GLOBAL</span>
+              <span className="font-display font-bold text-2xl tracking-[0.5em]">BMC</span>
+              <span className="font-display font-bold text-2xl tracking-[0.5em]">COGNIZANT</span>
+              <span className="font-display font-bold text-2xl tracking-[0.5em]">EBIX</span>
             </div>
           </div>
         </div>

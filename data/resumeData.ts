@@ -22,7 +22,8 @@ export const resumeData: ResumeData = {
     { name: "Design Systems", level: 85, category: "UI Architecture" },
     { name: "State Management (NgRx, Redux, Zustand)", level: 92, category: "UI Architecture" },
     { name: "Node.js", level: 88, category: "Backend" },
-    { name: "Java / Spring Boot", level: 82, category: "Backend" },
+    { name: "Java", level: 85, category: "Backend" },
+    { name: "Spring Boot", level: 82, category: "Backend" },
     { name: "Python / FastAPI", level: 85, category: "Backend" },
     { name: "AWS / CI/CD", level: 75, category: "Backend" },
     { name: "OpenAI SDK / Gen AI", level: 88, category: "AI" },
@@ -38,16 +39,21 @@ export const resumeData: ResumeData = {
       company: "Roche (RIS)",
       role: "Technical Lead Engineer | UI Architect",
       period: "06/2022 - 10/2025",
-      location: "Oakville, Ontario, Canada",
+      location: "Pune,India",
       project: "Navify Clinical Hub",
       description: "Large-scale clinical platform used by oncology teams to access consolidated patient data and support critical decision-making workflows.",
       bullets: [
         "Led frontend system architecture for a high-impact clinical platform used by global healthcare teams.",
         "Designed and maintained React and Angular-based frontend systems integrated with backend services and APIs.",
         "Delivered a production-ready AI Patient Chart proof-of-concept in under one month, securing stakeholder confidence and funding.",
-        "Drove frontend modernization efforts, standardizing architecture, improving maintainability, and reducing technical debt.",
-        "Acted as Engineering Excellence Lead, improving code quality, review standards, and frontend governance.",
-        "Championed accessibility best practices (WCAG 2.2, ARIA) across shared UI components."
+        "Owned end-to-end frontend delivery for multiple initiatives, including system rewrites and feature rollouts.",
+        "Drove frontend modernization efforts, standardizing architecture, improving maintainability, and reducing technical debt across products.",
+        "Implemented performance optimization strategies including lazy loading and code splitting to improve load times and runtime efficiency.",
+        "Championed accessibility and compliance standards (WCAG 2.2, ARIA) across shared UI components.",
+        "Established automated testing practices and quality gates using Jest, Testing Library, Cypress, and Playwright.",
+        "Served as Engineering Excellence Lead, defining review standards, governance practices, and mentoring junior engineers.",
+        "Collaborated with global product, backend, platform, and leadership stakeholders.",
+        "Explored and prototyped Generative AI and Agentic AI capabilities to enhance developer productivity and platform workflows, applying structured prompt design, agent orchestration, and enterprise-ready AI integration patterns."
       ],
       recognition: "Rated 'Exceeds Expectations' for three consecutive years."
     },
@@ -55,7 +61,7 @@ export const resumeData: ResumeData = {
       company: "BMC Software",
       role: "Sr. Product Developer",
       period: "01/2018 - 06/2022",
-      location: "Remote/On-site",
+      location: "Pune,India",
       project: "Helix Business Workflows",
       description: "Scalable SaaS case-management platform serving enterprise customers.",
       bullets: [
@@ -80,7 +86,7 @@ export const resumeData: ResumeData = {
       company: "Ebix Software India (Zinnia)",
       role: "System Analyst - II",
       period: "07/2011 - 08/2016",
-      location: "Nagpur/Pune, India",
+      location: "Nagpur,India",
       project: "SmartOffice - CRM",
       description: "A large enterprise CRM platform specialized in Insurance and Investment domain.",
       bullets: [
@@ -95,7 +101,7 @@ export const resumeData: ResumeData = {
       id: "clinical-hub",
       title: "Navify Clinical Hub",
       subtitle: "Healthcare Data Consolidation Platform",
-      description: "A centralized platform for oncology teams to visualize and interact with patient data from multiple sources.",
+      description: "Large-scale clinical platform used by oncology teams to access consolidated patient data and support critical decision-making workflows.",
       problem: "Doctors struggled with fragmented patient data across various legacy systems.",
       role: "Lead UI Architect",
       approach: "Implemented a micro-frontend architecture using Module Federation to allow independent teams to contribute to a unified workspace.",
@@ -120,9 +126,28 @@ export const resumeData: ResumeData = {
   ],
   certifications: [
     {
+      title: "AI Engineering Agentic Track : The Complete Agent & MCP Course",
+      issuer: "Udemy",
+      date: "12/2025 - Present",
+      link: "https://www.udemy.com/certificate/UC-6e03c71e-020c-4e53-889b-4d1368b03666/"
+    },
+    {
+      title: "Google Agentic Kit (ADK)",
+      issuer: "Udemy",
+      date: "12/2025 - Present",
+      link: "https://www.udemy.com/certificate/UC-b0f640b3-34e9-484c-8671-716adbb0e8f7/"
+    },
+    {
+      title: "Karrikins Alignment Accelerator",
+      issuer: "Karrikins Group",
+      date: "01/2025 - Present",
+      link: "https://www.credly.com/badges/a733896b-ae1d-4ead-a438-5fa309310a7d/linked_in_profile"
+    },
+    {
       title: "Certified SAFe® 5 Practitioner",
       issuer: "Scaled Agile Inc",
-      date: "07/2023"
+      date: "07/2023",
+      link: "https://www.credly.com/badges/b937304f-7c68-4941-a6d2-a4a4cbe68daf?source=linked_in_profile"
     }
   ],
   education: {
