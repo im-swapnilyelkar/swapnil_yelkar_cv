@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import ChatBot from './components/ChatBot';
 import { resumeData } from './data/resumeData';
 import { GoogleGenAI } from "@google/genai";
+import { Analytics } from "@vercel/analytics/react";
 
 const MatrixBackground = () => {
   useEffect(() => {
@@ -679,6 +680,7 @@ const App: React.FC = () => {
       </section>
 
       <ChatBot />
+      <Analytics />
     </Layout>
   );
 };
