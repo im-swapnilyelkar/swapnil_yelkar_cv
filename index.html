@@ -1,128 +1,174 @@
-
 <!DOCTYPE html>
 <html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Swapnil Yelkar | UI Architect & AI Pioneer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-      :root {
-        --primary: #06b6d4; /* Cyan */
-        --secondary: #10b981; /* Emerald */
-        --accent: #8b5cf6; /* Purple */
-        --bg-dark: #020617;
-      }
-      body {
-        font-family: 'Inter', sans-serif;
-        background-color: var(--bg-dark);
-        color: #f8fafc;
-        overflow-x: hidden;
-        scroll-behavior: smooth;
-      }
-      h1, h2, h3, h4, .font-display {
-        font-family: 'Space+Grotesk', sans-serif;
-      }
-      .glass {
-        background: rgba(15, 23, 42, 0.4);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      }
-      .neon-text-cyan {
-        text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
-      }
-      .neon-text-emerald {
-        text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
-      }
-      .matrix-canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        opacity: 0.15;
-        pointer-events: none;
-      }
-      .scanline {
-        width: 100%;
-        height: 100px;
-        z-index: 100;
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(6, 182, 212, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
-        opacity: 0.1;
-        position: fixed;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <title>Swapnil Yelkar </title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --primary: #06b6d4;
+      /* Cyan */
+      --secondary: #10b981;
+      /* Emerald */
+      --accent: #8b5cf6;
+      /* Purple */
+      --bg-dark: #020617;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: #f8fafc;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .font-display {
+      font-family: 'Space+Grotesk', sans-serif;
+    }
+
+    .glass {
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .neon-text-cyan {
+      text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+    }
+
+    .neon-text-emerald {
+      text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    }
+
+    .matrix-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .scanline {
+      width: 100%;
+      height: 100px;
+      z-index: 100;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(6, 182, 212, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
+      opacity: 0.1;
+      position: fixed;
+      bottom: 100%;
+      animation: scanline 10s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes scanline {
+      0% {
         bottom: 100%;
-        animation: scanline 10s linear infinite;
-        pointer-events: none;
       }
-      @keyframes scanline {
-        0% { bottom: 100%; }
-        100% { bottom: -100px; }
+
+      100% {
+        bottom: -100px;
       }
-      .grid-bg {
-        background-image: 
-          linear-gradient(rgba(6, 182, 212, 0.02) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(6, 182, 212, 0.02) 1px, transparent 1px);
-        background-size: 60px 60px;
+    }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(6, 182, 212, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6, 182, 212, 0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .resume-line {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .resume-line::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent), transparent);
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #020617;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px) rotate(0deg);
       }
-      .resume-line {
-        position: relative;
-        padding-left: 2rem;
+
+      50% {
+        transform: translateY(-20px) rotate(2deg);
       }
-      .resume-line::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0.5rem;
-        bottom: 0;
-        width: 2px;
-        background: linear-gradient(to bottom, var(--primary), var(--accent), transparent);
+
+      100% {
+        transform: translateY(0px) rotate(0deg);
       }
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #020617;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #1e293b;
-        border-radius: 10px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: var(--primary);
-      }
-      @keyframes float {
-        0% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-20px) rotate(2deg); }
-        100% { transform: translateY(0px) rotate(0deg); }
-      }
-      .animate-float {
-        animation: float 8s ease-in-out infinite;
-      }
-      .markdown-content h1, .markdown-content h2, .markdown-content h3 {
-        color: var(--primary);
-        font-weight: bold;
-        margin-top: 1rem;
-        margin-bottom: 0.5rem;
-      }
-      .markdown-content ul {
-        list-style-type: disc;
-        margin-left: 1.5rem;
-        margin-bottom: 1rem;
-      }
-      .markdown-content p {
-        margin-bottom: 0.75rem;
-      }
-      .markdown-content code {
-        background: rgba(255,255,255,0.1);
-        padding: 0.2rem 0.4rem;
-        border-radius: 0.25rem;
-        font-family: monospace;
-      }
-    </style>
+    }
+
+    .animate-float {
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .markdown-content h1,
+    .markdown-content h2,
+    .markdown-content h3 {
+      color: var(--primary);
+      font-weight: bold;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .markdown-content ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .markdown-content p {
+      margin-bottom: 0.75rem;
+    }
+
+    .markdown-content code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+      font-family: monospace;
+    }
+  </style>
   <script type="importmap">
 {
   "imports": {
@@ -134,12 +180,14 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
+  <link rel="stylesheet" href="/index.css">
 </head>
-  <body class="grid-bg">
-    <div class="scanline"></div>
-    <canvas id="matrix" class="matrix-canvas"></canvas>
-    <div id="root"></div>
+
+<body class="grid-bg">
+  <div class="scanline"></div>
+  <canvas id="matrix" class="matrix-canvas"></canvas>
+  <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>
