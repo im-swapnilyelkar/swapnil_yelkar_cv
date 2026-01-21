@@ -36,6 +36,19 @@ export const resumeData: ResumeData = {
   ],
   experience: [
     {
+      company: "Globant",
+      role: "Web UI Developer Architect",
+      period: "11/2025 - Present",
+      location: "Canada (Remote)",
+      project: "Client: Roche",
+      description: "Leading UI architecture and development for Roche projects, focusing on Agentic AI and enterprise-scale frontend systems.",
+      bullets: [
+        "Architecting and developing advanced UI solutions using Angular and React.",
+        "Driving the research and implementation of Agentic AI capabilities within the client ecosystem.",
+        "Collaborating with global teams to maintain high standards of engineering excellence and performance."
+      ]
+    },
+    {
       company: "Roche (RIS)",
       role: "Technical Lead Engineer | UI Architect",
       period: "06/2022 - 10/2025",

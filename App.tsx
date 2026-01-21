@@ -256,7 +256,7 @@ const App: React.FC = () => {
     window.dispatchEvent(new CustomEvent('open-career-agent'));
   };
 
-  const profileImgUrl = "https://media.licdn.com/dms/image/v2/D4D03AQHFEPLD9BSqXw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1706091531697?e=1767830400&v=beta&t=B2kfbYbsb09VqOjGt0KQ-5SLcmrcVJXt7J38hiubens";
+  const profileImgUrl = "/assets/Swapnil.jpg";
 
   return (
     <Layout>
