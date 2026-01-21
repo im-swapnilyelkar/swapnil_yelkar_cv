@@ -256,7 +256,7 @@ const App: React.FC = () => {
     window.dispatchEvent(new CustomEvent('open-career-agent'));
   };
 
-  const profileImgUrl = "/assets/Swapnil.jpg";
+  const profileImgUrl = "/Swapnil.jpg";
 
   return (
     <Layout>
