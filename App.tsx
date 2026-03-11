@@ -283,11 +283,11 @@ const App: React.FC = () => {
                 </h1>
                 <div className="relative overflow-hidden w-full max-w-full group">
                   <div className="text-base md:text-xl lg:text-2xl font-bold font-display animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-200 uppercase tracking-widest text-slate-200 flex flex-wrap md:flex-nowrap items-center justify-center lg:justify-start gap-3 md:gap-4 whitespace-nowrap">
-                    <span className="hover:text-cyan-400 transition-colors duration-300">Technical Lead</span>
+                    <span className="hover:text-cyan-400 transition-colors duration-300">Full Stack Engineer</span>
                     <span className="text-cyan-500/50">|</span>
                     <span className="hover:text-emerald-400 transition-colors duration-300">AI Engineer</span>
                     <span className="text-cyan-500/50">|</span>
-                    <span className="hover:text-purple-400 transition-colors duration-300">UI Architect</span>
+                    <span className="hover:text-purple-400 transition-colors duration-300">Technical Lead</span>
                   </div>
                   <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
                 </div>
